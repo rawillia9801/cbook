@@ -15,6 +15,7 @@ export default function Home(){
  const [category,setCategory]=useState('Dinner');
  const [ingredients,setIngredients]=useState('');
  const [instructions,setInstructions]=useState('');
+ const [image,setImage]=useState('');
  const [editIndex,setEditIndex]=useState<number|null>(null);
 
  useEffect(()=>{ const saved = localStorage.getItem('cristy_recipes'); if(saved) setRecipeList(JSON.parse(saved)); },[]);
@@ -28,15 +29,14 @@ export default function Home(){
 
  const addRecipe = ()=>{
    if(!title) return;
-   const newRecipe = {title,category,ingredients:ingredients.split(','),instructions,time:'Custom'};
-   if(editIndex!==null){
-     const updated=[...recipeList]; updated[editIndex]=newRecipe; setRecipeList(updated); setEditIndex(null);
-   } else setRecipeList([newRecipe,...recipeList]);
-   setTitle('');setIngredients('');setInstructions('');
+   const newRecipe = {title,category,ingredients:ingredients.split(','),instructions,time:'Custom',image};
+   if(editIndex!==null){ const updated=[...recipeList]; updated[editIndex]=newRecipe; setRecipeList(updated); setEditIndex(null); }
+   else setRecipeList([newRecipe,...recipeList]);
+   setTitle('');setIngredients('');setInstructions('');setImage('');
  }
 
  const deleteRecipe = (index:number)=> setRecipeList(recipeList.filter((_,i)=>i!==index));
- const editRecipe = (index:number)=>{ const r=recipeList[index]; setTitle(r.title); setCategory(r.category); setIngredients(r.ingredients.join(',')); setInstructions(r.instructions); setEditIndex(index); }
+ const editRecipe = (index:number)=>{ const r=recipeList[index]; setTitle(r.title); setCategory(r.category); setIngredients(r.ingredients.join(',')); setInstructions(r.instructions); setImage(r.image||''); setEditIndex(index); }
 
  return <main style={{padding:'36px',maxWidth:'1320px',margin:'0 auto'}}>
    <section style={{display:'grid',gridTemplateColumns:'1.2fr 0.8fr',gap:'24px',alignItems:'stretch',marginBottom:'34px'}}>
@@ -49,6 +49,7 @@ export default function Home(){
       <div style={{display:'grid',gap:'10px'}}>
         <input value={title} onChange={e=>setTitle(e.target.value)} placeholder='Recipe title' style={{padding:'12px'}} />
         <input value={ingredients} onChange={e=>setIngredients(e.target.value)} placeholder='Ingredients comma separated' style={{padding:'12px'}} />
+        <input value={image} onChange={e=>setImage(e.target.value)} placeholder='Optional image URL' style={{padding:'12px'}} />
         <textarea value={instructions} onChange={e=>setInstructions(e.target.value)} placeholder='Instructions' style={{padding:'12px',minHeight:'80px'}} />
         <button onClick={addRecipe}>{editIndex!==null?'Save Changes':'+ Add New Recipe'}</button>
       </div>
