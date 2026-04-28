@@ -1,3 +1,3 @@
-NEXT_PUBLIC_SUPABASE_URL=process_from_local_env
-NEXT_PUBLIC_SUPABASE_ANON_KEY=process_from_local_env
+NEXT_PUBLIC_SUPABASE_URL=https://gobeibjrfyyiazpmnztd.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=[provided_supabase_anon_key]
 ANTHROPIC_API_KEY=add_later
