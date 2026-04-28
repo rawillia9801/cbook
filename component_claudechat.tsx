@@ -3,18 +3,22 @@ import { useState } from 'react';
 import { MessageCircle } from 'lucide-react';
 
 export default function ClaudeChat(){
- const [msg,setMsg]=useState('Hi Cristy — I am Claude Chef. Ask me for substitutions, dinners, desserts, or ingredient help.');
+ const [msg,setMsg]=useState('Hi Cristy — I am Cristy\'s Helper. Ask me what to cook, what substitutes to use, or what to make with ingredients on hand.');
  const [input,setInput]=useState('');
  const askClaude=()=>{
    if(!input) return;
-   setMsg('Claude Chef thinks: For "'+input+'", I suggest garlic, butter, fresh herbs, and a simple comforting preparation. Full Anthropic live responses connect when API key is added.');
+   const q=input.toLowerCase();
+   if(q.includes('chicken')) setMsg('Cristy\'s Helper: Chicken goes beautifully with garlic butter pasta, creamy casseroles, or a quick baked herb dinner.');
+   else if(q.includes('dessert')) setMsg('Cristy\'s Helper: A warm cobbler, brownies, or banana pudding would be perfect.');
+   else if(q.includes('substitute')) setMsg('Cristy\'s Helper: I can help with swaps — tell me which ingredient you are missing.');
+   else setMsg('Cristy\'s Helper: I suggest something warm, simple, and family-friendly. Try searching your saved recipes or ask for a meal idea.');
    setInput('');
  }
- return <div style={{position:'fixed',right:'20px',bottom:'20px',background:'#fffdf9',padding:'22px',borderRadius:'22px',width:'320px',border:'1px solid #e8dccd',boxShadow:'0 10px 24px rgba(0,0,0,0.08)'}}>
+ return <div style={{position:'fixed',right:'20px',bottom:'20px',background:'#fffaf2',padding:'20px',borderRadius:'24px',width:'300px',border:'1px solid #d9ccb8',boxShadow:'0 12px 24px rgba(0,0,0,0.12)'}}>
    <MessageCircle />
-   <h4>Claude Chef</h4>
-   <p style={{lineHeight:'1.5',minHeight:'90px'}}>{msg}</p>
-   <input value={input} onChange={e=>setInput(e.target.value)} placeholder='Ask Claude Chef...' style={{width:'100%',padding:'10px',marginBottom:'8px'}} />
+   <h4 style={{marginBottom:'8px'}}>Cristy's Helper</h4>
+   <p style={{lineHeight:'1.6',minHeight:'95px',fontSize:'14px'}}>{msg}</p>
+   <input value={input} onChange={e=>setInput(e.target.value)} placeholder='Ask Cristy\'s Helper...' style={{width:'100%',padding:'10px',marginBottom:'8px',borderRadius:'10px',border:'1px solid #ccb79d'}} />
    <button onClick={askClaude}>Send</button>
  </div>
 }
