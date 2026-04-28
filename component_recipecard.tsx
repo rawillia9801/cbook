@@ -2,12 +2,13 @@ import { ChefHat } from 'lucide-react';
 
 export default function RecipeCard({recipe}:{recipe:any}){
  return (
-  <div style={{border:'1px solid #ddd',padding:'20px',borderRadius:'16px',background:'#fff'}}>
-   <ChefHat />
-   <h3>{recipe.title}</h3>
-   <p>{recipe.category} • {recipe.time}</p>
+  <div style={{border:'1px solid #eee',padding:'24px',borderRadius:'22px',background:'#fffdf9',boxShadow:'0 10px 24px rgba(0,0,0,0.08)'}}>
+   <ChefHat size={28} />
+   <h3 style={{fontSize:'24px',marginTop:'12px'}}>{recipe.title}</h3>
+   <span style={{display:'inline-block',background:'#f1e3c6',padding:'6px 12px',borderRadius:'20px',margin:'8px 0'}}>{recipe.category}</span>
+   <p><strong>{recipe.time}</strong></p>
    <p>{recipe.ingredients.join(', ')}</p>
-   <p>{recipe.instructions}</p>
+   <p style={{marginTop:'12px',lineHeight:'1.5'}}>{recipe.instructions}</p>
   </div>
  )
 }
