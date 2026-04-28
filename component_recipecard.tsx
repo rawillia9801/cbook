@@ -1,4 +1,4 @@
-export default function RecipeCard({recipe}:{recipe:any}){
+export default function RecipeCard({recipe,onEdit}:{recipe:any,onEdit?:()=>void}){
  return (
   <div style={{border:'1px solid #eadfce',padding:'0',borderRadius:'24px',background:'#fffdf9',boxShadow:'0 14px 30px rgba(0,0,0,0.08)',overflow:'hidden'}}>
    <div style={{height:'140px',background:'linear-gradient(135deg,#d8b892,#f4e6d1)'}}></div>
@@ -8,6 +8,10 @@ export default function RecipeCard({recipe}:{recipe:any}){
     <p><strong>{recipe.time}</strong></p>
     <p style={{color:'#6b5b4a'}}>{recipe.ingredients.join(', ')}</p>
     <p style={{marginTop:'12px',lineHeight:'1.6'}}>{recipe.instructions}</p>
+    <div style={{display:'flex',gap:'10px',marginTop:'16px'}}>
+      <button style={{background:'#7b9b59'}} onClick={onEdit}>Edit</button>
+      <button style={{background:'#d97706'}}>View</button>
+    </div>
    </div>
   </div>
  )
