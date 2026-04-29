@@ -1,17 +1,17 @@
-export default function RecipeCard({recipe,onEdit,onView}:{recipe:any,onEdit?:()=>void,onView?:()=>void}){
- const bannerStyle = recipe.image ? {backgroundImage:`url(${recipe.image})`,backgroundSize:'cover',backgroundPosition:'center'} : {background:'linear-gradient(135deg,#d8b892,#f4e6d1)'};
+export default function RecipeCard({recipe,onEdit,onView,onDelete}:{recipe:any,onEdit?:()=>void,onView?:()=>void,onDelete?:()=>void}){
  return (
-  <div style={{border:'1px solid #eadfce',padding:'0',borderRadius:'24px',background:'#fffdf9',boxShadow:'0 14px 30px rgba(0,0,0,0.08)',overflow:'hidden'}}>
-   <div style={{height:'180px',...bannerStyle}}></div>
+  <div style={{border:'1px solid #e5d7c0',borderRadius:'28px',background:'#fffdf8',boxShadow:'0 14px 28px rgba(0,0,0,0.08)',overflow:'hidden',position:'relative'}}>
+   <div style={{height:'210px',backgroundImage:`url(${recipe.image})`,backgroundSize:'cover',backgroundPosition:'center'}}></div>
+   <div style={{position:'absolute',top:'14px',right:'16px',fontSize:'22px'}}>♡</div>
    <div style={{padding:'22px'}}>
-    <span style={{display:'inline-block',background:'#f1e3c6',padding:'6px 12px',borderRadius:'20px',marginBottom:'10px'}}>{recipe.category}</span>
-    <h3 style={{fontSize:'26px',margin:'8px 0'}}>{recipe.title}</h3>
-    <p><strong>{recipe.time}</strong></p>
-    <p style={{color:'#6b5b4a'}}>{recipe.ingredients.join(', ')}</p>
-    <p style={{marginTop:'12px',lineHeight:'1.6'}}>{recipe.instructions.slice(0,90)}...</p>
-    <div style={{display:'flex',gap:'10px',marginTop:'16px'}}>
-      <button style={{background:'#7b9b59'}} onClick={onEdit}>Edit</button>
-      <button style={{background:'#d97706'}} onClick={onView}>View</button>
+    <span style={{display:'inline-block',background:'#eddcb8',padding:'6px 14px',borderRadius:'18px',marginBottom:'10px'}}>{recipe.category}</span>
+    <h3 style={{fontSize:'27px',margin:'8px 0'}}>{recipe.title}</h3>
+    <p style={{fontSize:'14px',color:'#8a6f58',marginBottom:'12px'}}>⏱ {recipe.time} &nbsp;&nbsp; 🍽 Serves {recipe.serves}</p>
+    <p style={{lineHeight:'1.6',minHeight:'54px'}}>{recipe.instructions}</p>
+    <div style={{display:'flex',gap:'8px',marginTop:'16px',flexWrap:'wrap'}}>
+      <button style={{background:'#7b9b59'}} onClick={onView}>View Recipe</button>
+      <button style={{background:'#b88b5a'}} onClick={onEdit}>Edit</button>
+      <button style={{background:'#b64034'}} onClick={onDelete}>Delete</button>
     </div>
    </div>
   </div>
