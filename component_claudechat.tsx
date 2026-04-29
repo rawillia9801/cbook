@@ -1,9 +1,8 @@
 "use client";
 import { useState } from 'react';
-import { MessageCircle } from 'lucide-react';
 
 export default function ClaudeChat(){
- const [msg,setMsg]=useState('Hi Cristy — I am Cristy\'s Helper. Ask me what to cook, what substitutes to use, or what to make with ingredients on hand.');
+ const [msg,setMsg]=useState('Hi Cristy — I am Cristy\'s Helper. Need a dinner idea, dessert suggestion, or ingredient substitution?');
  const [input,setInput]=useState('');
  const [loading,setLoading]=useState(false);
 
@@ -27,11 +26,10 @@ export default function ClaudeChat(){
    setLoading(false);
  }
 
- return <div style={{position:'fixed',right:'20px',bottom:'20px',background:'#fffaf2',padding:'20px',borderRadius:'24px',width:'300px',border:'1px solid #d9ccb8',boxShadow:'0 12px 24px rgba(0,0,0,0.12)'}}>
-   <MessageCircle />
-   <h4 style={{marginBottom:'8px'}}>Cristy's Helper</h4>
-   <p style={{lineHeight:'1.6',minHeight:'95px',fontSize:'14px'}}>{msg}</p>
-   <input value={input} onChange={e=>setInput(e.target.value)} placeholder='Ask Cristy\'s Helper...' style={{width:'100%',padding:'10px',marginBottom:'8px',borderRadius:'10px',border:'1px solid #ccb79d'}} />
-   <button onClick={askClaude}>{loading?'Thinking...':'Send'}</button>
+ return <div style={{background:'#efe1c8',padding:'28px',borderRadius:'28px',border:'1px solid #dbc9ab',boxShadow:'0 10px 24px rgba(0,0,0,0.07)'}}>
+   <h3 style={{fontSize:'28px',marginBottom:'12px'}}>Cristy's Helper</h3>
+   <p style={{lineHeight:'1.7',minHeight:'82px',marginBottom:'14px'}}>{msg}</p>
+   <input value={input} onChange={e=>setInput(e.target.value)} placeholder='Ask for cooking help...' style={{width:'100%',padding:'12px',marginBottom:'10px'}} />
+   <button onClick={askClaude}>{loading?'Thinking...':'Ask Helper'}</button>
  </div>
 }
